@@ -43,7 +43,7 @@ export default function MainNav() {
     <>
       <Navbar expand="lg" className="bg-body-tertiary fixed-top" data-bs-theme="dark" expanded={isExpanded}>
         <Container>
-          <Navbar.Brand >Huu Tinh Luu</Navbar.Brand>
+          <Navbar.Brand >Usama Sidat</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setIsExpanded(!isExpanded)} />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

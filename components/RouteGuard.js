@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { isAuthenticated } from '@/lib/authenticate';
-import { favoritesAtom, searchHistoryAtom } from '@/store';
+import { favouritesAtom, searchHistoryAtom } from '@/store';
 import { useAtom } from 'jotai';
 import { getFavourites, getHistory } from '@/lib/userData';
 
@@ -9,7 +9,7 @@ const PUBLIC_PATHS = ['/login', '/', '/_error', '/register'];
 
 export default function RouteGuard(props) {
 
-    const [favourites, setFavourites] = useAtom(favoritesAtom);
+    const [favourites, setFavourites] = useAtom(favouritesAtom);
     const [history, setHistory] = useAtom(searchHistoryAtom);
     const [authorized, setAuthorized] = useState(false);
     const router = useRouter();
