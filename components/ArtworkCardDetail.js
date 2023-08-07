@@ -4,25 +4,26 @@ import Error from 'next/error';
 import { Card, Container } from 'react-bootstrap';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { favoritesAtom } from '@/store';
+import { favouritesAtom } from '@/store';
 import { Button } from 'react-bootstrap';
 import { addToFavourites, removeFromFavourites } from '@/lib/userData';
 
 export default function ArtWorkCardDetail({ objectID }) {
   const { data, error } = useSWR(objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}` : null);
-  const [favorites, setFavorites] = useAtom(favoritesAtom);
+  //Atom
+  const [favourites, setFavourites] = useAtom(favouritesAtom);
   const [showAdded, setShowAdded] = useState(false);
 
   useEffect(() => {
-    setShowAdded(favorites?.includes(objectID));
-  }, [favorites, objectID]);
+    setShowAdded(favourites?.includes(objectID));
+  }, [favourites, objectID]);
 
-  async function favoritesClicked() {
+  async function favouritesClicked() {
     if (showAdded) {
-      setFavorites(await removeFromFavourites(objectID));
+      setFavourites(await removeFromFavourites(objectID));
       setShowAdded(false);
     } else {
-      setFavorites(await addToFavourites(objectID));
+      setFavourites(await addToFavourites(objectID));
       setShowAdded(true);
     }
   }
@@ -57,8 +58,8 @@ export default function ArtWorkCardDetail({ objectID }) {
                 {data.creditLine ? <p><strong>Credit Line: </strong>{data.creditLine}</p> : <p><strong>Credit Line: </strong>N/A</p>}
                 {data.dimensions ? <p><strong>Dimensions: </strong>{data.dimensions}</p> : <p><strong>Dimensions: </strong>N/A</p>}
 
-                {/* // Button to add to favorites */}
-                {showAdded ? <Button variant="primary" onClick={favoritesClicked}>+ Favourite (added)</Button> : <Button variant="outline-primary" onClick={favoritesClicked}>+ Favourite</Button>}
+                {/* // Button to add to favourites */}
+                {showAdded ? <Button variant="primary" onClick={favouritesClicked}>+ Favourite (added)</Button> : <Button variant="outline-primary" onClick={favouritesClicked}>+ Favourite</Button>}
               </Card.Text>
             </Card.Body>
           </Card>

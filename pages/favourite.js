@@ -8,14 +8,14 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 
 export default function Favourite() {
-  const [favourites, setFavorites] = useAtom(favouritesAtom);
+  const [favourites, setFavourites] = useAtom(favouritesAtom);
   let [artWorkList, setArtWorkList] = useState([]);
 
   useEffect(() => {
     setArtWorkList(favourites);
   }, []);
 
-  if (!favorites) return null;
+  if (!favourites) return null;
 
   return (
     <>

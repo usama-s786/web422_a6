@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { authenticateUser } from "@/lib/authenticate";
 import { useRouter } from 'next/router';
 import { useAtom } from "jotai";
-import { favoritesAtom, searchHistoryAtom } from "@/store";
+import { favouritesAtom, searchHistoryAtom } from "@/store";
 import { getFavourites, getHistory } from "@/lib/userData";
 
 
@@ -11,7 +11,7 @@ export default function Login(props) {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [warning, setWarning] = useState('');
-    const [favorites, setFavouritesList] = useAtom(favoritesAtom);
+    const [favourites, setFavouritesList] = useAtom(favouritesAtom);
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
     const router = useRouter();
@@ -27,7 +27,7 @@ export default function Login(props) {
         try {
             await authenticateUser(user, password);
             await updateAtoms();
-            router.push('/favorite')
+            router.push('/favourite')
         }
         catch (err) {
             setWarning(err.message)
